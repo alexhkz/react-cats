@@ -8,26 +8,26 @@ function CatBlock({title, price}) {
 	}
 
 	return (
-		<div className="pizza-block">
+		<div className="cat-block">
 			<img
-				className="pizza-block__image"
+				className="cat-block__image"
 				src="../img/british2.jpg"
 				alt="British"
 			/>
-			<h4 className="pizza-block__title">{title}</h4>
-			<div className="pizza-block__selector">
+			<h4 className="cat-block__title">{title}</h4>
+			<div className="cat-block__selector">
 				<ul>
-					<li className="active">тонкое</li>
-					<li>традиционное</li>
+					<li className="active">взрослый</li>
+					<li>котёнок</li>
 				</ul>
 				<ul>
-					<li className="active">26 см.</li>
-					<li>30 см.</li>
-					<li>40 см.</li>
+					<li className="active">1 кг.</li>
+					<li>3 кг.</li>
+					<li>5 кг.</li>
 				</ul>
 			</div>
-			<div className="pizza-block__bottom">
-				<div className="pizza-block__price">от {price} L</div>
+			<div className="cat-block__bottom">
+				<div className="cat-block__price">от {price} L</div>
 				<button onClick={onClickAddButton} className="button button--outline button--add">
 					<svg
 					width="12"

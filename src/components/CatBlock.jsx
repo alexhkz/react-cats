@@ -1,34 +1,41 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
 
-function CatBlock({title, price}) {
-	const [catCount, setCatCount] = useState(0);
-
-	const onClickAddButton = () => {
-		setCatCount(catCount + 1);
-	}
+function CatBlock({title, price, imageUrl, sizes, types,}) {
+	const [activeType, setActiveType] = useState(0);
+	const [activeSize, setActiveSize] = useState(0);
+	const typeNames = ['тонкое', 'традиционное'];
 
 	return (
 		<div className="cat-block">
 			<img
 				className="cat-block__image"
-				src="../img/british2.jpg"
+				src={imageUrl}
 				alt="British"
 			/>
 			<h4 className="cat-block__title">{title}</h4>
 			<div className="cat-block__selector">
 				<ul>
-					<li className="active">взрослый</li>
-					<li>котёнок</li>
+					{types.map((typeId) => (
+						<li 
+							onClick={() => setActiveType(typeId)}
+							className={activeType === typeId ? 'active' : ''}>
+							{typeNames[typeId]}
+						</li>
+					))}
 				</ul>
 				<ul>
-					<li className="active">1 кг.</li>
-					<li>3 кг.</li>
-					<li>5 кг.</li>
+					{sizes.map((size, i) => 
+						<li
+							onClick={() => setActiveSize(i)} 
+							className={activeSize === i ? 'active' : ''}>
+							{size} см.
+						</li>
+					)}
 				</ul>
 			</div>
 			<div className="cat-block__bottom">
 				<div className="cat-block__price">от {price} L</div>
-				<button onClick={onClickAddButton} className="button button--outline button--add">
+				<button className="button button--outline button--add">
 					<svg
 					width="12"
 					height="12"
@@ -42,7 +49,7 @@ function CatBlock({title, price}) {
 					/>
 					</svg>
 					<span>Добавить</span>
-					<i>{catCount}</i>
+					<i>0</i>
 				</button>
 			</div>
 		</div> 

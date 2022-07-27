@@ -5,7 +5,11 @@ import Categories from "./components/Categories";
 import Sort from "./components/Sort";
 import CatBlock from './components/CatBlock';
 
+import cats from './assets/cats.json';
+
 import './scss/app.scss';
+
+console.log(cats);
 
 function App() {
 	return (
@@ -19,12 +23,18 @@ function App() {
 				</div>
 				<h2 className="content__title">Все котики</h2>
 				<div className="content__items">
-					<CatBlock title='Британская' price={500} />
+					{cats.map(obj => (
+						<CatBlock 
+							{...obj}
+						/>
+					))}
+
+					{/* <CatBlock title='Британская' price={500} />
 					<CatBlock title='Абиссин' price={400} />
 					<CatBlock title='Русская голубая' price={350} />
 					<CatBlock title='Оцикет' price={600} />
 					<CatBlock title='Персидская' price={550} />
-					<CatBlock title='Сиамская' price={450} />
+					<CatBlock title='Сиамская' price={450} /> */}
 				</div>
 			</div>
 			</div>

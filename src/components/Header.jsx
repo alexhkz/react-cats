@@ -1,9 +1,11 @@
+import catLogo from '../assets/img/cat-logo.svg';
+
 function Header() {
 	return (
 		<div className="header">
 			<div className="container">
 				<div className="header__logo">
-					<img width="38" src="./img/cat-logo.svg" alt="Pizza logo" />
+					<img width="38" src={catLogo} alt="Pizza logo" />
 					<div>
 					<h1>React Cats</h1>
 					<p>самые няшные котики во вселенной</p>

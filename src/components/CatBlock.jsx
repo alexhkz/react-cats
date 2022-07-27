@@ -16,7 +16,8 @@ function CatBlock({title, price, imageUrl, sizes, types,}) {
 			<div className="cat-block__selector">
 				<ul>
 					{types.map((typeId) => (
-						<li 
+						<li
+							key={typeId} 
 							onClick={() => setActiveType(typeId)}
 							className={activeType === typeId ? 'active' : ''}>
 							{typeNames[typeId]}
@@ -26,6 +27,7 @@ function CatBlock({title, price, imageUrl, sizes, types,}) {
 				<ul>
 					{sizes.map((size, i) => 
 						<li
+							key={size}
 							onClick={() => setActiveSize(i)} 
 							className={activeSize === i ? 'active' : ''}>
 							{size} см.

@@ -9,8 +9,6 @@ import cats from './assets/cats.json';
 
 import './scss/app.scss';
 
-console.log(cats);
-
 function App() {
 	return (
 		<div className="wrapper">
@@ -25,6 +23,7 @@ function App() {
 				<div className="content__items">
 					{cats.map(obj => (
 						<CatBlock 
+							key={obj.id}
 							{...obj}
 						/>
 					))}

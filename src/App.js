@@ -1,15 +1,21 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 
 import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Sort from "./components/Sort";
 import CatBlock from './components/CatBlock';
 
-import cats from './assets/cats.json';
-
 import './scss/app.scss';
 
 function App() {
+	const [items, setItems] = useState([]);
+	
+	useEffect(() => { 
+		fetch('https://62e266d53891dd9ba8e74514.mockapi.io/cats')
+		.then(res => res.json())
+		.then(data => setItems(data))
+	}, []);
+
 	return (
 		<div className="wrapper">
 			<Header/>
@@ -21,7 +27,7 @@ function App() {
 				</div>
 				<h2 className="content__title">Все котики</h2>
 				<div className="content__items">
-					{cats.map(obj => (
+					{items.map(obj => (
 						<CatBlock 
 							key={obj.id}
 							{...obj}

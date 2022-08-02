@@ -4,8 +4,10 @@ import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Sort from "./components/Sort";
 import CatBlock from './components/CatBlock';
+import Skeleton from "./components/CatBlock/skeleton";
 
 import './scss/app.scss';
+
 
 function App() {
 	const [items, setItems] = useState([]);
@@ -28,7 +30,7 @@ function App() {
 				<h2 className="content__title">Все котики</h2>
 				<div className="content__items">
 					{items.map(obj => (
-						<CatBlock 
+						<Skeleton 
 							key={obj.id}
 							{...obj}
 						/>

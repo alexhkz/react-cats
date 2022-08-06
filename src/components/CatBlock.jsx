@@ -6,7 +6,8 @@ function CatBlock({title, price, imageUrl, sizes, types,}) {
 	const typeNames = ['тонкое', 'традиционное'];
 
 	return (
-		<div className="cat-block">
+		<div className="cat-block-wrapper">
+			<div className="cat-block">
 			<img
 				className="cat-block__image"
 				src={imageUrl}
@@ -53,6 +54,7 @@ function CatBlock({title, price, imageUrl, sizes, types,}) {
 					<span>Добавить</span>
 					<i>0</i>
 				</button>
+			</div>
 			</div>
 		</div> 
 	)

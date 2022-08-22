@@ -27,6 +27,7 @@ const Home = () => {
 			setIsLoading(false);
 		});
 		window.scrollTo(0, 0);
+		/*eslint-disable */
 	}, [categoryId, sortType]);
 
 	return (

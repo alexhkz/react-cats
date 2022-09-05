@@ -4,23 +4,27 @@ import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import CatBlock from '../components/CatBlock';
 import Skeleton from "../components/CatBlock/skeleton.jsx";
+import Pagination from '../components/Pagination';
 
-const Home = () => {
+const Home = ({searchValue}) => {
 	const [items, setItems] = useState([]);
 	const [isLoading, setIsLoading] = useState(true);
 	const [categoryId, setCategoryId] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
 	const [sortType, setSortType] = useState({
 		name: 'популярности',
 		sortProperty: 'rating',
 	});
 
-	const sortBy = sortType.sortProperty.replace('-', '');
-	const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
-	const category = categoryId > 0 ? `category=${categoryId}` : '';
-	
 	useEffect(() => { 
 		setIsLoading(true);
-		fetch(`https://62e266d53891dd9ba8e74514.mockapi.io/cats?${category}&sortBy=${sortBy}&order=${order}`)
+
+		const sortBy = sortType.sortProperty.replace('-', '');
+		const order = sortType.sortProperty.includes('-') ? 'asc' : 'desc';
+		const category = categoryId > 0 ? `category=${categoryId}` : '';
+		const search = searchValue ? `&search=${searchValue}` : '';
+
+		fetch(`https://62e266d53891dd9ba8e74514.mockapi.io/cats?page=${currentPage}&limit=4&${category}&sortBy=${sortBy}&order=${order}${search}`)
 		.then(res => res.json())
 		.then(data => {
 			setItems(data)
@@ -28,7 +32,16 @@ const Home = () => {
 		});
 		window.scrollTo(0, 0);
 		/*eslint-disable */
-	}, [categoryId, sortType]);
+	}, [categoryId, sortType, searchValue, currentPage]);
+
+	const skeletons = [...new Array(6)].map((_, index) => <Skeleton key={index} />);
+	const cats = items.map((obj) => <CatBlock key={obj.id} {...obj} /> );
+	// const cats = items.filter(obj => {
+	// 	if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
+	// 		return true;
+	// 	}
+	// 	return false;
+	// }).map((obj) => <CatBlock key={obj.id} {...obj} /> );
 
 	return (
 		<div className="container">
@@ -38,10 +51,9 @@ const Home = () => {
 			</div>
 			<h2 className="content__title">Все котики</h2>
 			<div className="content__items">
-				{isLoading 
-					? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-					: items.map((obj) => <CatBlock key={obj.id} {...obj} /> )}
+				{isLoading ? skeletons : cats}
 			</div>
+			<Pagination onChangePage={number => setCurrentPage(number)} />
 		</div>
 	);
 };

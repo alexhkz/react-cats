@@ -3,7 +3,7 @@ import React,{useState} from "react";
 function CatBlock({title, price, imageUrl, sizes, types,}) {
 	const [activeType, setActiveType] = useState(0);
 	const [activeSize, setActiveSize] = useState(0);
-	const typeNames = ['тонкое', 'традиционное'];
+	const typeNames = ['маленький', 'большой'];
 
 	return (
 		<div className="cat-block-wrapper">
@@ -11,7 +11,7 @@ function CatBlock({title, price, imageUrl, sizes, types,}) {
 			<img
 				className="cat-block__image"
 				src={imageUrl}
-				alt="British"
+				alt="Cute cat"
 			/>
 			<h4 className="cat-block__title">{title}</h4>
 			<div className="cat-block__selector">

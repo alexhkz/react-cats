@@ -32,6 +32,7 @@ function App() {
 			>
 				Decrement
 			</button>
+			<textarea>Что-то</textarea>
 			<SearchContext.Provider value={{searchValue, setSearchValue}}>
 				<Header />
 				<div className="content">
